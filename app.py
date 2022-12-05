@@ -1,21 +1,23 @@
 import pymysql
 
-conn = pymysql.connect(host="db", user="root", password="root", database="database")
+conn = pymysql.connect(host="db", user="root", password="root", database="asDatabase")
 
 cur = conn.cursor()
 
-borrar = f"DROP TABLE IF EXISTS database.alumnos"
+permisos = f"GRANT ALL PRIVILEGES ON asDatabase.* TO 'as'@'%';"
 
-create = f"CREATE TABLE alumnos (nombre VARCHAR(30), edad INTEGER)"
+borrar = f"DROP TABLE IF EXISTS asDatabase.alumnos;"
 
-insert = f"INSERT INTO alumnos (nombre, edad) VALUES ('Joseba', 21)"
-#insert2 = f"INSERT INTO alumnos (nombre, edad) VALUES ('Janire', 21)"
-#insert3 = f"INSERT INTO alumnos (nombre, edad) VALUES ('Gaizka', 21)"
-#insert4 = f"INSERT INTO alumnos (nombre, edad) VALUES ('Borja', 22)"
+create = f"CREATE TABLE `alumnos` ( `nombre` varchar(30) NOT NULL, `edad` int(11) NOT NULL); "
 
+insert = f"INSERT INTO `alumnos` (`nombre`, `edad`) VALUES ('Joseba', '21'), ('Borja', '22');"
+
+cur.execute(permisos)
 cur.execute(borrar)
 cur.execute(create)
 cur.execute(insert)
+
+conn.commit()
 
 print(f"{cur.rowcount} alumnos insertados")
 conn.close()
