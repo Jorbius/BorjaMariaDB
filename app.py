@@ -10,7 +10,6 @@ create = f"CREATE TABLE `alumnos` ( `nombre` varchar(30) NOT NULL, `edad` int(11
 
 insert = f"INSERT INTO `alumnos` (`nombre`, `edad`) VALUES ('Joseba', '21'), ('Borja', '22');"
 
-cur.execute(permisos)
 cur.execute(borrar)
 cur.execute(create)
 cur.execute(insert)
