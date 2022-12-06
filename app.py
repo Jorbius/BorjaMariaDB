@@ -4,8 +4,6 @@ conn = pymysql.connect(host="db", user="root", password="root", database="asData
 
 cur = conn.cursor()
 
-permisos = f"GRANT ALL PRIVILEGES ON asDatabase.* TO 'as'@'%';"
-
 borrar = f"DROP TABLE IF EXISTS asDatabase.alumnos;"
 
 create = f"CREATE TABLE `alumnos` ( `nombre` varchar(30) NOT NULL, `edad` int(11) NOT NULL); "
